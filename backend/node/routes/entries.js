@@ -1,4 +1,4 @@
-const { express, cors } = require("../exports");\
+const { express, cors } = require("../exports");
 const {
     addEntry,
     removeEntry,
