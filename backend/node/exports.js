@@ -6,8 +6,10 @@ const cors = require("cors");
 const mongodb = require("mongodb");
 
 // Export all of these modules to be used elsewhere
-exports.express = express;
-exports.app = app;
-exports.dotenv = dotenv;
-exports.cors = cors;
-exports.mongodb = mongodb;
+module.exports = {
+    express,
+    app,
+    dotenv,
+    cors,
+    mongodb
+};

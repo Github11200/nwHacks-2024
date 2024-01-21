@@ -1,10 +1,11 @@
 const { express, cors } = require("../exports");
-const client = require("../services/dbService").client;
+const { getAllEntries } = require("../services/dbService");
 const router = express.Router();
 
 router.use(cors());
-router.get("/getEntries", (req, res) => {
-    res.send("Hello world");
+router.get("/getEntries", async (req, res) => {
+    await getAllEntries();
+    res.send("return");
 });
 
 module.exports = router;
