@@ -1,0 +1,286 @@
+<html>
+    <head>
+        <style>
+            @import url("https://fonts.googleapis.com/css2?family=Inter&display=swap");
+            @import url("https://fonts.googleapis.com/css2?family=Inter:wght@700&display=swap");
+            :root {
+                font-family: "Inter", sans-serif;
+                --platform: "WEB";
+            }
+            html {
+                background-color: rgba(191, 215, 255, 1);
+                margin: 0px;
+                padding: 0px;
+            }
+            .grand-parent {
+                position: relative;
+                height: 926px;
+                width: 428px;
+                background-color: rgba(191, 215, 255, 1);
+                overflow: hidden;
+                transition: opacity 1.5s ease-in-out;
+            }
+
+            .fade-out {
+                opacity: 0;
+            }
+
+            .parent {
+                overflow: hidden;
+            }
+            body {
+                margin: 0px;
+                overflow: hidden;
+                user-select: none;
+            }
+        </style>
+        <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1, user-scalable=no"
+        />
+    </head>
+    <body>
+        <div class="grand-parent" id="app">
+            <div class="parent">
+                <!-- Go home snippet -->
+                <img
+                    style="position: absolute; top: 50; left: 10; width: 50px"
+                    src="https://raw.githubusercontent.com/Github11200/nwHacks-2024/main/assets/leftArrow.png"
+                />
+                <script>
+                    function nav_goto_home() {
+                        window.location = "Homepage.html";
+                    }
+                </script>
+                <div
+                    onclick="nav_goto_home()"
+                    style="
+                        position: absolute;
+                        background-color: aquamarine;
+                        width: 50px;
+                        height: 50px;
+                        top: 50;
+                        left: 10px;
+                        opacity: 0;
+                    "
+                    id="Logbook"
+                ></div>
+                <!-- End of Snippet -->
+
+                <div
+                    style="
+                        position: absolute;
+                        top: 717px;
+                        left: -86px;
+                        width: 401px;
+                        height: 336px;
+                        background-color: rgba(84, 101, 255, 0.86);
+                        border-radius: 50%;
+                    "
+                ></div>
+                <div
+                    style="
+                        position: absolute;
+                        top: 648px;
+                        left: 123.44px;
+                        width: 457px;
+                        height: 444px;
+                        background-color: rgba(155, 177, 255, 0.7);
+                        border-radius: 50%;
+                    "
+                ></div>
+
+                <span
+                    style="
+                        position: absolute;
+                        top: 120px;
+                        left: 19px;
+                        font-weight: 700;
+                        color: rgba(39, 51, 158, 1);
+                    "
+                >
+                    <div
+                        id="editabletitle"
+                        style="
+                            font-size: 30px;
+                            white-space: nowrap;
+                            max-width: 100%;
+                            width: 380px;
+                            overflow: hidden;
+                            text-overflow: ellipsis;
+                        "
+                        contenteditable
+                    >
+                        Untitled Entry
+                    </div>
+                </span>
+
+                <script>
+                    document
+                        .getElementById("editabletitle")
+                        .addEventListener("paste", function (event) {
+                            event.preventDefault();
+
+                            // Get the pasted text without HTML
+                            var text = (
+                                event.originalEvent || event
+                            ).clipboardData.getData("text/plain");
+
+                            // Remove new lines and set the content
+                            this.innerText = text.replace(/\n/g, "");
+                        });
+
+                    var editable = document.getElementById("editabletitle");
+
+                    editable.addEventListener("beforeinput", function (event) {
+                        if (event.inputType === "insertParagraph") {
+                            event.preventDefault();
+                            this.blur();
+                        }
+                    });
+                </script>
+
+                <span
+                    style="
+                        position: absolute;
+                        top: 170px;
+                        left: 19px;
+                        font-weight: 400;
+                        color: rgba(39, 51, 158, 1);
+                    "
+                >
+                    <span id="currentdate" style="font-size: 15px"
+                        >CHEDDAR CHEESE WOOOOOOOO</span
+                    >
+                </span>
+
+                <script>
+                    function updateDate() {
+                        var currentDateElement =
+                            document.getElementById("currentdate");
+                        var currentDate = new Date();
+
+                        // Get the date components
+                        var day = currentDate
+                            .getDate()
+                            .toString()
+                            .padStart(2, "0");
+                        var month = (currentDate.getMonth() + 1)
+                            .toString()
+                            .padStart(2, "0"); // Months are zero-based
+                        var year = currentDate.getFullYear();
+
+                        // Update the content of the element with the new date
+                        currentDateElement.textContent =
+                            month + "." + day + "." + year;
+                    }
+
+                    // Call the updateDate function to set the initial date and start the update loop
+                    updateDate();
+                </script>
+
+                <div
+                    style="
+                        position: absolute;
+                        width: 387px;
+                        height: 680px;
+                        top: 214px;
+                        left: 20px;
+                        border-radius: 30px;
+                        background-color: white;
+                    "
+                ></div>
+
+                <img
+                    src="https://raw.githubusercontent.com/Github11200/nwHacks-2024/main/assets/questionMark_noBackground.png"
+                    style="
+                        position: absolute;
+                        width: 45px;
+                        top: 226px;
+                        left: 354px;
+                    "
+                />
+            </div>
+        </div>
+
+        <iframe
+            src="signin.html"
+            frameborder="none"
+            style="
+                height: 926px;
+                width: 428px;
+                position: absolute;
+                top: 0;
+                left: 0;
+                z-index: -1;
+            "
+        ></iframe>
+
+        <script>
+            function adjustZoom() {
+                const bodyWidth = document.body.offsetWidth;
+                const elementWidth =
+                    document.querySelector(".grand-parent").offsetWidth;
+
+                // Calculate the desired zoom level
+                const zoomLevel = (bodyWidth / elementWidth) * 100;
+
+                // Set the zoom level on the body
+                document.body.style.zoom = zoomLevel + "%";
+            }
+
+            adjustZoom();
+
+            var restrictElement = document.getElementById("app");
+
+            function handleScroll(event) {
+                var scrollTop = window.scrollY;
+
+                // Check if the user is trying to scroll past the restricted element
+                if (scrollTop > restrictElement.offsetTop) {
+                    // Prevent default scroll behavior
+                    event.preventDefault();
+                }
+            }
+
+            // Attach the scroll event listener to the window
+            window.addEventListener("scroll", handleScroll);
+
+            document.addEventListener("contextmenu", function (e) {
+                // Check if the right-clicked element is not an input field
+                if (
+                    e.target.tagName.toLowerCase() !== "input" &&
+                    e.target.tagName.toLowerCase() !== "textarea"
+                ) {
+                    e.preventDefault(); // Disable the right-click context menu
+                }
+            });
+
+            var textboxes = document.querySelectorAll("input");
+
+            function scrollToTop() {
+                window.scrollTo({ top: 0 });
+            }
+
+            var textInputs = document.querySelectorAll("input");
+            textInputs.forEach(function (textInput) {
+                textInput.addEventListener("blur", scrollToTop);
+            });
+
+            function fadeAway() {
+                // Prevent the default behavior of the anchor tag (preventing redirection)
+                event.preventDefault();
+
+                // Add a class to initiate the fade-out effect
+                document
+                    .querySelector(".grand-parent")
+                    .classList.add("fade-out");
+
+                // Optional: You can add a timeout to redirect after the animation completes
+                setTimeout(function () {
+                    window.location.href = "signin.html";
+                }, 1500);
+            }
+        </script>
+    </body>
+</html>
