@@ -183,6 +183,7 @@
                         left: 20px;
                         overflow-x: hidden;
                         overflow-y: scroll;
+                        padding-bottom: 5px;
                     "
                     id="chatbox"
                 >
@@ -655,10 +656,9 @@
                 let title = await summarize(
                     "https://api.jinsei.tech/generate_title"
                 );
+                closeChatButton.remove();
                 console.log(`Title: ${title}`);
                 addDataToDB(title, summarizedText);
-
-                closeChatButton.remove();
             });
         </script>
     </body>
