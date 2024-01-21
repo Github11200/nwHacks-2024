@@ -105,7 +105,9 @@
                         position: absolute;
                         top: 215px;
                         left: 20px;
+                        overflow: scroll;
                     "
+                    id="chatbox"
                 ></div>
 
                 <input
@@ -123,6 +125,7 @@
                         outline: none;
                         border: none;
                         padding-left: 22px;
+                        font-size: 15px;
                     "
                 />
 
@@ -150,6 +153,8 @@
                     id="Logbook"
                 ></div>
                 <!-- End of Snippet -->
+
+                <h1 id="test"></h1>
             </div>
         </div>
 
@@ -203,6 +208,91 @@
             textInputs.forEach(function (textInput) {
                 textInput.addEventListener("blur", scrollToTop);
             });
+        </script>
+
+        <!-- THIS SCRIPT IS FOR FETCHING DATA FROM CHATGPT -->
+        <script>
+            let chat = [
+                {
+                    text: "Hey {Name}, tell me a bit about your day. What did you do, how did you feel? To end the chat type /end.",
+                },
+                {
+                    text: "My day was pretty good, I woke up today pretty late and then got the bus to go to ubc to go to the hackathon. Hackathon started at like 11, and i met my group. Lunch was pizza, oh ya the hackathon started at 12. And then we came up with some ideas and right now I am responding to you.",
+                },
+                {
+                    text: "It sounds like you had a busy and interesting day! What kind of project is your group working on at the hackathon?",
+                },
+                {
+                    text: "My team is working on an AI journaling app that allows people to have conversations with chat bots like this and annotate the notes for me! /end",
+                },
+                {
+                    text: "That sounds amazing! I would love to learn more but have a good rest of your day! ",
+                },
+            ];
+
+            function getData() {
+                fetch(`http://10.19.128.212:8888/generate_question`, {
+                    method: "POST",
+                    mode: "no-cors",
+                    body: JSON.stringify({ text: "summarize this text" }),
+                }).then((res) => {
+                    const ele = document.getElementById("test");
+                    console.log(res.body);
+                    ele.innerText = res.body;
+                });
+            }
+
+            function displayData() {
+                const root = document.getElementById("chatbox");
+
+                /*
+                
+                <div>
+                    <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="64"
+                            height="64"
+                            viewBox="0 0 64 64"
+                            fill="none"
+                            style="position: relative; top: 20px; left: 14px"
+                        >
+                            <path
+                                d="M64 32C64 49.6731 49.6731 64 32 64C14.3269 64 0 49.6731 0 32C0 14.3269 14.3269 0 32 0C49.6731 0 64 14.3269 64 32Z"
+                                fill="url(#paint0_linear_18_173)"
+                            />
+                            <defs>
+                                <linearGradient
+                                    id="paint0_linear_18_173"
+                                    x1="32"
+                                    y1="0"
+                                    x2="32"
+                                    y2="64"
+                                    gradientUnits="userSpaceOnUse"
+                                >
+                                    <stop stop-color="#88E2FF" />
+                                    <stop offset="1" stop-color="#AA9DFF" />
+                                </linearGradient>
+                            </defs>
+                        </svg>
+                </div>
+                
+                */
+
+                let div = document.createElement("div");
+                div.append();
+
+                root.appendChild();
+
+                chat.map((object, index) => {
+                    return `
+                        <div>
+                        
+                    
+                    `;
+                });
+            }
+
+            getData();
         </script>
     </body>
 </html>

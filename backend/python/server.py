@@ -65,5 +65,23 @@ def summarize():
         return res['choices'][0]['text']
 
 
+@app.route('/generate_question', methods=["POST"])
+def generate_question():
+    if 'questions' not in request.json:
+        return jsonify({"error": 'oopsies woopsies you forgot to include the \'questions\' paramater :3'})
+    else:
+        API_TOKEN = os.getenv("OPENAI_KEY")
+        res = openai.Completion.create(
+            prompt=f"System: Think of a single question to ask to figure out what the user did in their day without asking any of the following ones you already asked: {
+                '.'.join(request.json['questions'])}",
+            model="gpt-3.5-turbo-instruct",
+            max_tokens=50
+        )
+
+        print(res['choices'][0]['text'])
+
+        return res['choices'][0]['text']
+
+
 if __name__ == '__main__':
     app.run(debug=True, port=8888, host="0.0.0.0")
