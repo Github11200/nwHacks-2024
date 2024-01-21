@@ -1,7 +1,13 @@
+import os
 import requests
 import random
 import string
+
+import openai
+from dotenv import load_dotenv
 from flask import Flask, request, jsonify
+
+load_dotenv()
 
 app = Flask(__name__)
 
@@ -27,6 +33,9 @@ def home():
 </script>'''
 
 
+openai.api_key = os.environ.get("OPENAI_KEY")
+
+
 @app.route('/transcribe', methods=["POST", "GET"])
 def transcribe():
     if 'audio_file' not in request.files:
@@ -36,6 +45,24 @@ def transcribe():
             string.ascii_letters) for _ in range(50))}, files={'audio_file': request.files["audio_file"]})
 
         return jsonify(res.json())
+
+
+@app.route('/summarize', methods=["POST", "GET"])
+def summarize():
+    if 'text' not in request.json:
+        return jsonify({"error": 'oopsies woopsies you forgot to include the \'text\' paramater :3'})
+    else:
+        API_TOKEN = os.getenv("OPENAI_KEY")
+        res = openai.Completion.create(
+            prompt=f"System: You are to summarize the following text. Do not introduce, only output the summarized text. Here is the text you need to summarize: {
+                request.json['text']}\nAssistant: Here is the summarized text: ",
+            model="gpt-3.5-turbo-instruct",
+            max_tokens=500
+        )
+
+        print(res['choices'][0]['text'])
+
+        return res['choices'][0]['text']
 
 
 if __name__ == '__main__':
