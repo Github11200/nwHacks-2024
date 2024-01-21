@@ -1,0 +1,119 @@
+<html>
+<head>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@700&display=swap');
+    :root {
+        font-family: 'Inter', sans-serif;
+        --platform: "WEB"
+    }
+    html {
+        background-color: #BFD7FF;
+        margin: 0px;
+        padding: 0px;
+    }
+    .grand-parent {
+        position: relative;
+        height: 926px;
+        width: 428px;
+        background-color: #BFD7FF;
+        overflow: hidden
+    }
+    .parent {
+        overflow: hidden;
+    }
+    body {
+        margin: 0px;
+        overflow: hidden;
+        user-select: none;
+    }
+</style>
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+<script src="https://cdn.auth0.com/js/lock/12.4/lock.min.js"></script>
+</head>
+<body>
+    <div class="grand-parent" id="app">
+        <div class="parent">
+            <div style="height: 444px; width: 457px; background-color: #9BB1FF; border-radius: 457px; position: absolute; left: 277px; top:-21px"></div>
+            <div style="height: 600px; width: 738px; background-color: rgba(84, 101, 255, 0.86); border-radius: 50%; position: absolute; left: -221px; top:-217px"></div>
+            <div style="height: 473px; width: 476px; background-color: #9BB1FF; border-radius: 50%; position: absolute; left: -238px; top:-308px;"></div>
+            <div style="color: #FFFFFF; font-size: 45px; font-style: normal; font-weight: 700; line-height: 54.46px; position: absolute; left: 69px; top: 198px; font-weight: 700;">Welcome<br>Back</div>
+
+            <input id="email" type="text" style="position: absolute; height: 55px; width: 290px; border-radius: 25px; border: none; padding-left: 25px; font-size: 15px; font-weight: 400; top: 431px; left: 69px; color: #838383" placeholder="Your Email">
+            <input id="password" type="password" style="position: absolute; height: 55px; width: 290px; border-radius: 25px; border: none; padding-left: 25px; font-size: 15px; font-weight: 400; top: 505px; left: 69px; color: #838383" placeholder="Password">
+
+            <a href="#" id="reset-password-link"" style="position: absolute; top: 573px; left: 83px; height: 16px; color: #27339E; font-weight: 600; font-size: 13px; text-decoration: none;">Forgot password?</a>
+
+            <button style="background-color: #5465FF; position: absolute; height: 55px; width: 290px; border-radius: 25px; border: none; font-size: 15px; font-weight: 400; top: 602px; left: 69px; cursor: pointer">
+                <span style="font-weight: 700; color:white; font-size: 15px;">Continue</span>
+            </button>
+
+            <a href="signup.html" style="position: absolute; top: 670px; left: 83px; height: 16px; color: #27339E; text-decoration: none; font-size: 13px;">
+                <span>Don't have an account?</span>
+                <span style="font-weight: 700">Sign up</span>
+            </a>
+
+            <div style="position: absolute; top: 708px; left: 85px; height: 1px; width: 108px; background-color: #4D5CB6;"></div>
+            <span style="position: absolute; font-weight: 700; top: 699px; left: 204px; color: #27339E; font-size: 13px;">OR</span>
+            <div style="position: absolute; top: 708px; left: 234px; height: 1px; width: 108px; background-color: #4D5CB6;"></div>
+
+            <button id="login-with-google" style="background-color: rgba(84, 101, 255, 0.66); position: absolute; height: 55px; width: 290px; border-radius: 25px; border: none; font-size: 15px; font-weight: 400; top: 734px; left: 69px; cursor: pointer">
+                <img style="vertical-align:-7px;" src="https://raw.githubusercontent.com/Github11200/nwHacks-2024/main/assets/Google_White.png" width="25px"><span style="padding-left: 5px; font-weight: 700; color:white; font-size: 15px;">Continue with Google</span>
+            </button>
+
+            <button id="login-with-apple" style="background-color: rgba(84, 101, 255, 0.66); position: absolute; height: 55px; width: 290px; border-radius: 25px; border: none; font-size: 15px; font-weight: 400; top: 797px; left: 69px; cursor: pointer">
+                <img style="vertical-align:-7px;" src="https://raw.githubusercontent.com/Github11200/nwHacks-2024/main/assets/Apple_White.png" width="25px"><span style="padding-left: 5px; font-weight: 700; color:white; font-size: 15px;">Continue with Apple</span>
+            </button>
+        </div>
+    </div>
+
+    <script>
+        function adjustZoom() {
+          const bodyWidth = document.body.offsetWidth;
+          const elementWidth = document.querySelector('.grand-parent').offsetWidth;
+    
+          // Calculate the desired zoom level
+          const zoomLevel = (bodyWidth / elementWidth) * 100;
+    
+          // Set the zoom level on the body
+          document.body.style.zoom = zoomLevel + '%';
+        }
+    
+        adjustZoom()
+
+        var restrictElement = document.getElementById('app');
+
+        function handleScroll(event) {
+        var scrollTop = window.scrollY;
+
+        // Check if the user is trying to scroll past the restricted element
+        if (scrollTop > restrictElement.offsetTop) {
+            // Prevent default scroll behavior
+            event.preventDefault();
+        }
+        }
+
+        // Attach the scroll event listener to the window
+        window.addEventListener('scroll', handleScroll);
+
+        document.addEventListener('contextmenu', function (e) {
+        // Check if the right-clicked element is not an input field
+        if (e.target.tagName.toLowerCase() !== 'input' && e.target.tagName.toLowerCase() !== 'textarea') {
+            e.preventDefault(); // Disable the right-click context menu
+        }
+        });
+
+        var textboxes = document.querySelectorAll('input');
+
+        function scrollToTop() {
+            window.scrollTo({ top: 0 });
+        }
+
+        var textInputs = document.querySelectorAll('input');
+        textInputs.forEach(function (textInput) {
+            textInput.addEventListener('blur', scrollToTop);
+        });
+        
+      </script>
+</body>
+</html>
