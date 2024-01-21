@@ -1,118 +1,190 @@
 <html>
-<head>
-<style>
-    @import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
-    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@700&display=swap');
-    :root {
-        font-family: 'Inter', sans-serif;
-        --platform: "WEB"
-    }
-    html {
-        background-color: #BFD7FF;
-        margin: 0px;
-        padding: 0px;
-    }
-    .grand-parent {
-        position: relative;
-        height: 926px;
-        width: 428px;
-        background-color: #BFD7FF;
-        overflow: hidden
-    }
-    .parent {
-        overflow: hidden;
-    }
-    body {
-        margin: 0px;
-        overflow: hidden;
-        user-select: none;
-    }
-</style>
-<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-<script src="https://cdn.auth0.com/js/lock/12.4/lock.min.js"></script>
-</head>
-<body>
-    <div class="grand-parent" id="app">
-        <div class="parent">
-            <div style="height: 444px; width: 457px; background-color: #9BB1FF; border-radius: 457px; position: absolute; left: 123.44; top:648px"></div>
-            <div style="height: 444px; width: 457px; background-color: #9BB1FF; border-radius: 457px; position: absolute; left: 123.44; top:648px"></div>
-            <div style="color: #27339E; font-style: normal; font-weight: 700; line-height: normal; position: absolute; left: 60px; top: 224px; font-weight: 700;"><span style="font-size: 30px;">Whats on Your</span><br /><span style="font-size: 50px;">Mind Today?</span></div>
+    <head>
+        <style>
+            @import url("https://fonts.googleapis.com/css2?family=Inter&display=swap");
+            @import url("https://fonts.googleapis.com/css2?family=Inter:wght@700&display=swap");
+            :root {
+                font-family: "Inter", sans-serif;
+                --platform: "WEB";
+            }
+            html {
+                background-color: #bfd7ff;
+                margin: 0px;
+                padding: 0px;
+            }
+            .grand-parent {
+                position: relative;
+                height: 926px;
+                width: 428px;
+                background-color: #bfd7ff;
+                overflow: hidden;
+            }
+            .parent {
+                overflow: hidden;
+            }
+            body {
+                margin: 0px;
+                overflow: hidden;
+                user-select: none;
+            }
+        </style>
+        <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1, user-scalable=no"
+        />
+        <script src="https://cdn.auth0.com/js/lock/12.4/lock.min.js"></script>
+    </head>
+    <body>
+        <div class="grand-parent" id="app">
+            <div class="parent">
+                <div
+                    style="
+                        background-color: white;
+                        width: 300px;
+                        height: 103px;
+                        flex-shrink: 0;
+                        width: 300px;
+                        height: 103px;
+                        flex-shrink: 0;
+                        position: absolute;
+                        z-index: 10;
+                        border-radius: 25px;
+                        box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+                    "
+                >
+                    <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="64"
+                        height="64"
+                        viewBox="0 0 64 64"
+                        fill="none"
+                        style="position: relative; top: 20px; left: 14px"
+                    >
+                        <path
+                            d="M64 32C64 49.6731 49.6731 64 32 64C14.3269 64 0 49.6731 0 32C0 14.3269 14.3269 0 32 0C49.6731 0 64 14.3269 64 32Z"
+                            fill="url(#paint0_linear_18_173)"
+                        />
+                        <defs>
+                            <linearGradient
+                                id="paint0_linear_18_173"
+                                x1="32"
+                                y1="0"
+                                x2="32"
+                                y2="64"
+                                gradientUnits="userSpaceOnUse"
+                            >
+                                <stop stop-color="#88E2FF" />
+                                <stop offset="1" stop-color="#AA9DFF" />
+                            </linearGradient>
+                        </defs>
+                    </svg>
+                    <div
+                        style="
+                            color: #27339e;
+                            font-style: normal;
+                            font-weight: 700;
+                            line-height: normal;
+                            position: absolute;
+                            left: 60px;
+                            top: 224px;
+                            font-weight: 700;
+                        "
+                    >
+                        New AI Chat Entry
+                    </div>
+                </div>
 
-            <input id="email" type="text" style="position: absolute; height: 55px; width: 290px; border-radius: 25px; border: none; padding-left: 25px; font-size: 15px; font-weight: 400; top: 431px; left: 69px; color: #838383" placeholder="Your Email">
-            <input id="password" type="password" style="position: absolute; height: 55px; width: 290px; border-radius: 25px; border: none; padding-left: 25px; font-size: 15px; font-weight: 400; top: 505px; left: 69px; color: #838383" placeholder="Password">
-
-            <a href="#" id="reset-password-link"" style="position: absolute; top: 573px; left: 83px; height: 16px; color: #27339E; font-weight: 600; font-size: 13px; text-decoration: none;">Forgot password?</a>
-
-            <button style="background-color: #5465FF; position: absolute; height: 55px; width: 290px; border-radius: 25px; border: none; font-size: 15px; font-weight: 400; top: 602px; left: 69px; cursor: pointer">
-                <span style="font-weight: 700; color:white; font-size: 15px;">Continue</span>
-            </button>
-
-            <a href="signup.html" style="position: absolute; top: 670px; left: 83px; height: 16px; color: #27339E; text-decoration: none; font-size: 13px;">
-                <span>Don't have an account?</span>
-                <span style="font-weight: 700">Sign up</span>
-            </a>
-
-            <div style="position: absolute; top: 708px; left: 85px; height: 1px; width: 108px; background-color: #4D5CB6;"></div>
-            <span style="position: absolute; font-weight: 700; top: 699px; left: 204px; color: #27339E; font-size: 13px;">OR</span>
-            <div style="position: absolute; top: 708px; left: 234px; height: 1px; width: 108px; background-color: #4D5CB6;"></div>
-
-            <button id="login-with-google" style="background-color: rgba(84, 101, 255, 0.66); position: absolute; height: 55px; width: 290px; border-radius: 25px; border: none; font-size: 15px; font-weight: 400; top: 734px; left: 69px; cursor: pointer">
-                <img style="vertical-align:-7px;" src="https://raw.githubusercontent.com/Github11200/nwHacks-2024/main/assets/Google_White.png" width="25px"><span style="padding-left: 5px; font-weight: 700; color:white; font-size: 15px;">Continue with Google</span>
-            </button>
-
-            <button id="login-with-apple" style="background-color: rgba(84, 101, 255, 0.66); position: absolute; height: 55px; width: 290px; border-radius: 25px; border: none; font-size: 15px; font-weight: 400; top: 797px; left: 69px; cursor: pointer">
-                <img style="vertical-align:-7px;" src="https://raw.githubusercontent.com/Github11200/nwHacks-2024/main/assets/Apple_White.png" width="25px"><span style="padding-left: 5px; font-weight: 700; color:white; font-size: 15px;">Continue with Apple</span>
-            </button>
+                <div
+                    style="
+                        height: 336px;
+                        width: 401px;
+                        background-color: #5465ffdb;
+                        border-radius: 401px;
+                        position: absolute;
+                        left: -86px;
+                        top: 717px;
+                    "
+                ></div>
+                <div
+                    style="
+                        height: 444px;
+                        width: 457px;
+                        background-color: #9bb1ff;
+                        border-radius: 457px;
+                        position: absolute;
+                        left: 123.44;
+                        top: 648px;
+                        opacity: 70%;
+                    "
+                ></div>
+                <div
+                    style="
+                        color: #27339e;
+                        font-style: normal;
+                        font-weight: 700;
+                        line-height: normal;
+                        position: absolute;
+                        left: 60px;
+                        top: 224px;
+                        font-weight: 700;
+                    "
+                >
+                    <span style="font-size: 30px">Whats on Your</span
+                    ><br /><span style="font-size: 50px">Mind Today?</span>
+                </div>
+            </div>
         </div>
-    </div>
 
-    <script>
-        function adjustZoom() {
-          const bodyWidth = document.body.offsetWidth;
-          const elementWidth = document.querySelector('.grand-parent').offsetWidth;
-    
-          // Calculate the desired zoom level
-          const zoomLevel = (bodyWidth / elementWidth) * 100;
-    
-          // Set the zoom level on the body
-          document.body.style.zoom = zoomLevel + '%';
-        }
-    
-        adjustZoom()
+        <script>
+            function adjustZoom() {
+                const bodyWidth = document.body.offsetWidth;
+                const elementWidth =
+                    document.querySelector(".grand-parent").offsetWidth;
 
-        var restrictElement = document.getElementById('app');
+                // Calculate the desired zoom level
+                const zoomLevel = (bodyWidth / elementWidth) * 100;
 
-        function handleScroll(event) {
-        var scrollTop = window.scrollY;
+                // Set the zoom level on the body
+                document.body.style.zoom = zoomLevel + "%";
+            }
 
-        // Check if the user is trying to scroll past the restricted element
-        if (scrollTop > restrictElement.offsetTop) {
-            // Prevent default scroll behavior
-            event.preventDefault();
-        }
-        }
+            adjustZoom();
 
-        // Attach the scroll event listener to the window
-        window.addEventListener('scroll', handleScroll);
+            var restrictElement = document.getElementById("app");
 
-        document.addEventListener('contextmenu', function (e) {
-        // Check if the right-clicked element is not an input field
-        if (e.target.tagName.toLowerCase() !== 'input' && e.target.tagName.toLowerCase() !== 'textarea') {
-            e.preventDefault(); // Disable the right-click context menu
-        }
-        });
+            function handleScroll(event) {
+                var scrollTop = window.scrollY;
 
-        var textboxes = document.querySelectorAll('input');
+                // Check if the user is trying to scroll past the restricted element
+                if (scrollTop > restrictElement.offsetTop) {
+                    // Prevent default scroll behavior
+                    event.preventDefault();
+                }
+            }
 
-        function scrollToTop() {
-            window.scrollTo({ top: 0 });
-        }
+            // Attach the scroll event listener to the window
+            window.addEventListener("scroll", handleScroll);
 
-        var textInputs = document.querySelectorAll('input');
-        textInputs.forEach(function (textInput) {
-            textInput.addEventListener('blur', scrollToTop);
-        });
-        
-      </script>
-</body>
+            document.addEventListener("contextmenu", function (e) {
+                // Check if the right-clicked element is not an input field
+                if (
+                    e.target.tagName.toLowerCase() !== "input" &&
+                    e.target.tagName.toLowerCase() !== "textarea"
+                ) {
+                    e.preventDefault(); // Disable the right-click context menu
+                }
+            });
+
+            var textboxes = document.querySelectorAll("input");
+
+            function scrollToTop() {
+                window.scrollTo({ top: 0 });
+            }
+
+            var textInputs = document.querySelectorAll("input");
+            textInputs.forEach(function (textInput) {
+                textInput.addEventListener("blur", scrollToTop);
+            });
+        </script>
+    </body>
 </html>
