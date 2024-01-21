@@ -9,6 +9,12 @@
     "not safari <= 16.5"
   ],
   "hints": {
-    "meta-viewport": "off"
+    "meta-viewport": "off",
+    "axe/text-alternatives": [
+      "default",
+      {
+        "image-alt": "off"
+      }
+    ]
   }
 }

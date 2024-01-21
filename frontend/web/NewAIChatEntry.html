@@ -1,0 +1,179 @@
+<html>
+    <head>
+        <style>
+            @import url("https://fonts.googleapis.com/css2?family=Inter&display=swap");
+            @import url("https://fonts.googleapis.com/css2?family=Inter:wght@700&display=swap");
+            :root {
+                font-family: "Inter", sans-serif;
+                --platform: "WEB";
+            }
+            html {
+                background-color: #bfd7ff;
+                margin: 0px;
+                padding: 0px;
+            }
+            .grand-parent {
+                position: relative;
+                height: 926px;
+                width: 428px;
+                background-color: #bfd7ff;
+                overflow: hidden;
+            }
+            .parent {
+                overflow: hidden;
+            }
+            body {
+                margin: 0px;
+                overflow: hidden;
+                user-select: none;
+            }
+        </style>
+        <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1, user-scalable=no"
+        />
+        <script src="https://cdn.auth0.com/js/lock/12.4/lock.min.js"></script>
+    </head>
+    <body>
+        <div class="grand-parent" id="app">
+            <div class="parent">
+                <div
+                    style="
+                        width: 673px;
+                        height: 518px;
+                        flex-shrink: 0;
+                        background-color: #5465ffdb;
+                        border-radius: 518px;
+                        position: absolute;
+                        right: 47px;
+                        top: 376px;
+                        opacity: 70%;
+                    "
+                ></div>
+                <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="230"
+                    height="470"
+                    viewBox="0 0 230 470"
+                    fill="none"
+                    style="top: 283px; left: 198px; position: absolute"
+                >
+                    <path
+                        d="M457 235C457 364.787 354.697 470 228.5 470C102.303 470 9.4317e-06 364.787 9.4317e-06 235C9.4317e-06 105.213 102.303 0 228.5 0C354.697 0 457 105.213 457 235Z"
+                        fill="#788BFF"
+                    />
+                </svg>
+                <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="198"
+                    height="470"
+                    viewBox="0 0 198 470"
+                    fill="none"
+                    style="top: 199px; right: 230px; position: absolute"
+                >
+                    <path
+                        d="M198 235C198 364.787 95.6971 470 -30.5 470C-156.697 470 -259 364.787 -259 235C-259 105.213 -156.697 0 -30.5 0C95.6971 0 198 105.213 198 235Z"
+                        fill="#9BB1FF"
+                        fill-opacity="0.7"
+                    />
+                </svg>
+                <div
+                    style="
+                        color: #27339e;
+                        font-style: normal;
+                        font-weight: 700;
+                        line-height: normal;
+                        position: absolute;
+                        left: 20px;
+                        top: 105px;
+                        font-weight: 700;
+                    "
+                >
+                    <span style="font-size: 30px">New</span><br /><span
+                        style="font-size: 50px"
+                        >AI Chat Entry</span
+                    >
+                </div>
+
+                <div style=""></div>
+
+                <!-- Go home snippet -->
+                <img
+                    style="position: absolute; top: 50; left: 10; width: 50px"
+                    src="https://raw.githubusercontent.com/Github11200/nwHacks-2024/main/assets/leftArrow.png"
+                />
+                <script>
+                    function nav_goto_home() {
+                        window.location = "home.html";
+                    }
+                </script>
+                <div
+                    onclick="nav_goto_home()"
+                    style="
+                        position: absolute;
+                        background-color: aquamarine;
+                        width: 50px;
+                        height: 50px;
+                        top: 50;
+                        left: 10px;
+                        opacity: 0;
+                    "
+                    id="Logbook"
+                ></div>
+                <!-- End of Snippet -->
+            </div>
+        </div>
+
+        <script>
+            function adjustZoom() {
+                const bodyWidth = document.body.offsetWidth;
+                const elementWidth =
+                    document.querySelector(".grand-parent").offsetWidth;
+
+                // Calculate the desired zoom level
+                const zoomLevel = (bodyWidth / elementWidth) * 100;
+
+                // Set the zoom level on the body
+                document.body.style.zoom = zoomLevel + "%";
+            }
+
+            adjustZoom();
+
+            var restrictElement = document.getElementById("app");
+
+            function handleScroll(event) {
+                var scrollTop = window.scrollY;
+
+                // Check if the user is trying to scroll past the restricted element
+                if (scrollTop > restrictElement.offsetTop) {
+                    // Prevent default scroll behavior
+                    event.preventDefault();
+                }
+            }
+
+            // Attach the scroll event listener to the window
+            window.addEventListener("scroll", handleScroll);
+
+            document.addEventListener("contextmenu", function (e) {
+                // Check if the right-clicked element is not an input field
+                if (
+                    e.target.tagName.toLowerCase() !== "input" &&
+                    e.target.tagName.toLowerCase() !== "textarea"
+                ) {
+                    e.preventDefault(); // Disable the right-click context menu
+                }
+            });
+
+            var textboxes = document.querySelectorAll("input");
+
+            function scrollToTop() {
+                window.scrollTo({ top: 0 });
+            }
+
+            var textInputs = document.querySelectorAll("input");
+            textInputs.forEach(function (textInput) {
+                textInput.addEventListener("blur", scrollToTop);
+            });
+        </script>
+    </body>
+</html>
