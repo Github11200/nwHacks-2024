@@ -1,6 +1,7 @@
 const { MongoClient } = require("../exports").mongodb;
-const uri =
-    "mongodb+srv://admin:cheesy@main.k98k84m.mongodb.net/?retryWrites=true&w=majority";
+const { dotenv } = require("../exports");
+dotenv.config();
+const uri = process.env.CONNECTION_STRING;
 
 const client = new MongoClient(uri);
 const databaseName = "entries";

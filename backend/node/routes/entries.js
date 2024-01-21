@@ -1,5 +1,4 @@
-const { express, cors } = require("../exports");
-const { v4: uuidv4 } = require("uuid");
+const { express, cors } = require("../exports");\
 const {
     addEntry,
     removeEntry,
@@ -25,13 +24,13 @@ router.post("/addEntry", async (req, res) => {
 });
 
 router.delete("/removeEntry", async (req, res) => {
-    await removeEntry(req.body.id)
+    await removeEntry(123456)
         .then(res.send(200))
         .catch((error) => res.send(error));
 });
 
 router.get("/findEntry", async (req, res) => {
-    await findEntry(req.body.id)
+    await findEntry(123456)
         .then((entry) => res.send(entry))
         .catch((error) => res.send(error));
 });
