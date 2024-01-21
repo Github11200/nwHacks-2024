@@ -643,6 +643,8 @@
             closeChatButton.addEventListener("click", async (e) => {
                 const chatBox = document.getElementById("chatbox");
                 chatBox.remove();
+                closeChatButton.remove();
+
 
                 const dialog = document.getElementById(
                     "conversationClosedDialog"
@@ -656,7 +658,6 @@
                 let title = await summarize(
                     "https://api.jinsei.tech/generate_title"
                 );
-                closeChatButton.remove();
                 console.log(`Title: ${title}`);
                 addDataToDB(title, summarizedText);
             });

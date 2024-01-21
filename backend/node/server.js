@@ -12,24 +12,36 @@ app.listen(process.env.PORT, async () => {
     console.log(`Listening on port ${process.env.PORT}`);
 });
 
-// const { auth } = require("express-oauth2-jwt-bearer");
-// const guard = require("express-jwt-permissions");
+const express = require("express");
+const { join } = require("path");
+// const app = express();
 
-// const port = process.env.PORT || 8080;
+// Serve static assets from the /public folder
+app.use(express.static(join(__dirname, "public")));
 
-// const jwtCheck = auth({
-//     audience: "https://nodeapi.jinsei.tech/api",
-//     issuerBaseURL: "https://dev-lacfvy66y7c52o7p.us.auth0.com/",
-//     tokenSigningAlg: "RS256",
-// });
+// Endpoint to serve the configuration file
+app.get("/auth_config.json", (req, res) => {
+    res.sendFile(join(__dirname, "auth_config.json"));
+});
 
-// // enforce on all endpoints
-// app.use(jwtCheck);
+// Serve the index page for all other requests
+app.get("/*", (_, res) => {
+    res.sendFile(join(__dirname, "index.html"));
+});
 
-// app.get("/authorized", guard().check(["read:challenges"]), function (req, res) {
-//     res.json({ test1: "test 1", test2: "test2" });
-// });
+// Listen on port 3000
+app.listen(8080, () => console.log("Application running on port 8080"));
 
-// app.listen(port);
+let auth0Client = null;
 
-// console.log("Running on port ", port);
+const fetchAuthConfig = () => fetch("/auth_config.json");
+
+const configureClient = async () => {
+    const response = await fetchAuthConfig();
+    const config = await response.json();
+
+    auth0Client = await auth0.createAuth0Client({
+        domain: config.domain,
+        clientId: config.clientId,
+    });
+};
