@@ -14,6 +14,7 @@ router.post("/addEntry", async (req, res) => {
         date: 12,
         title: "hi",
         text: "test",
+        messages: [{ messageFromBot: false, message: "message" }],
         id: 123,
     };
     await addEntry({ ...testObject })

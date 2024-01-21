@@ -1,12 +1,13 @@
 ## Entries routes:
 
--   **"/entries/addEntry"** - This will add an entry, below is the schema of the object that needs to be passed into the body.
+-   **"/entries/addEntry"** - This will add an entry, below is the schema of the object that needs to be passed into the body. The `messageFromBot` property is just to store whether this reponse was from the user or from chatGPT, and this can be used when reading the data from the server and putting it back on the app.
 
     ```
     let testObject = {
         date: Javascript Date Object,
         title: "title",
         text: "text",
+        messages: [{ messageFromBot: false, message: "message"}],
         id: USE uuid TO GENERATE THE ID,
     };
     ```

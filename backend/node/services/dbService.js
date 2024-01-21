@@ -7,7 +7,7 @@ const client = new MongoClient(uri);
 const databaseName = "entries";
 const collectionName = "entriesCollection";
 
-const addEntry = async ({ date, title, text, id }) => {
+const addEntry = async ({ date, title, text, messages, id }) => {
     try {
         await client.connect();
         const db = await client.db(databaseName);
@@ -16,6 +16,7 @@ const addEntry = async ({ date, title, text, id }) => {
             date: date,
             title: title,
             text: text,
+            messages: messages,
             id: id,
         });
         console.log("Entry was added to the database.");
