@@ -43,7 +43,7 @@
                         height: 518px;
                         flex-shrink: 0;
                         background-color: #5465ffdb;
-                        border-radius: 518px;
+                        border-radius: 50%;
                         position: absolute;
                         right: 47px;
                         top: 376px;
@@ -63,14 +63,90 @@
                         fill="#788BFF"
                     />
                 </svg>
-                <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="198"
-                    height="470"
-                    viewBox="0 0 198 470"
-                    fill="none"
-                    style="top: 199px; right: 230px; position: absolute"
-                >
+                <a href="index.html">
+                    <div
+                        id="conversationClosedDialog"
+                        style="
+                            visibility: hidden;
+                        "
+                    >
+                        <span
+                            style="
+                                color: #000;
+                                font-family: Inter;
+                                font-size: 35px;
+                                font-style: normal;
+                                font-weight: 700;
+                                line-height: 45px;
+                                letter-spacing: -0.408px;
+                                width: 234px;
+                                height: 135px;
+                                position: relative;
+                                top: 32px;
+                                left: 35px;
+                                visibility: inherit;
+                            "
+                        >
+                            Conversation
+                            <br />
+                            Closed.
+                        </span>
+                        <div
+                            id="viewNewEntry"
+                            style="
+                                visibility: inherit;
+                                border-radius: 25px;
+                                background: #5465ff;
+                                width: 234px;
+                                height: 55px;
+                                flex-shrink: 0;
+                                position: relative;
+                                left: 28px;
+                                top: 55px;
+                            "
+                        >
+                            <span
+                                style="
+                                    color: #fff;
+                                    visibility: inherit;
+                                    font-family: Inter;
+                                    font-size: 20px;
+                                    font-style: normal;
+                                    font-weight: 700;
+                                    line-height: 45px; /* 225% */
+                                    letter-spacing: -0.408px;
+                                    position: relative;
+                                    top: 5px;
+                                    left: 25px;
+                                "
+                            >
+                                view all entries
+                            </span>
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="7"
+                                height="12"
+                                viewBox="0 0 7 12"
+                                fill="none"
+                                style="
+                                    position: relative;
+                                    left: 50px;
+                                    top: 7px;
+                                    width: 18px;
+                                    height: 18px;
+                                "
+                            >
+                                <path
+                                    d="M1 1L6 6L1 11"
+                                    stroke="white"
+                                    stroke-width="2"
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                />
+                            </svg>
+                        </div>
+                    </div>
+                </a>
                     <path
                         d="M198 235C198 364.787 95.6971 470 -30.5 470C-156.697 470 -259 364.787 -259 235C-259 105.213 -156.697 0 -30.5 0C95.6971 0 198 105.213 198 235Z"
                         fill="#9BB1FF"
@@ -110,7 +186,7 @@
                     "
                     id="chatbox"
                 >
-                    <!-- <div>
+                <!-- <div>
                         <svg
                             xmlns="http://www.w3.org/2000/svg"
                             width="49"
@@ -195,7 +271,58 @@
                             started at 12. And then we came up with some ideas
                             and right now I am responding to you.
                         </div>
-                    </div> -->
+                    </div>  -->
+                </div>
+
+                <div
+                    id="closeChat"
+                    style="
+                        top: 830px;
+                        left: 48px;
+                        width: 328px;
+                        height: 55px;
+                        flex-shrink: 0;
+                        border-radius: 25px;
+                        background: #4d5cb6;
+                        position: absolute;
+                        visibility: hidden;
+                    "
+                >
+                    <span
+                        style="
+                            color: #fff;
+                            position: relative;
+                            top: 14px;
+                            left: 30px;
+                            font-family: Inter;
+                            font-size: 20px;
+                            font-style: normal;
+                            font-weight: 700;
+                            line-height: normal;
+                        "
+                        >close conversation</span
+                    ><svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="7"
+                        height="12"
+                        viewBox="0 0 7 12"
+                        fill="none"
+                        style="
+                            position: relative;
+                            left: 100px;
+                            top: 17px;
+                            width: 18px;
+                            height: 18px;
+                        "
+                    >
+                        <path
+                            d="M1 1L6 6L1 11"
+                            stroke="white"
+                            stroke-width="2"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                        />
+                    </svg>
                 </div>
 
                 <input
@@ -236,7 +363,7 @@
                 />
                 <script>
                     function nav_goto_home() {
-                        window.location = "Homepage.html";
+                        window.location = "home.html";
                     }
                 </script>
                 <div
@@ -249,6 +376,7 @@
                         top: 50;
                         left: 10px;
                         opacity: 0;
+                        z-index: 99999;
                     "
                     id="Logbook"
                 ></div>
@@ -352,32 +480,7 @@
                     } else {
                         return `
                                     <div>
-                                        <svg
-                                            xmlns="http://www.w3.org/2000/svg"
-                                            width="49"
-                                            height="46"
-                                            viewBox="0 0 49 46"
-                                            fill="none"
-                                            style="position: relative; top: 50px; left: 16px"
-                                        >
-                                            <path
-                                                d="M49 23C49 35.7025 38.031 46 24.5 46C10.969 46 0 35.7025 0 23C0 10.2975 10.969 0 24.5 0C38.031 0 49 10.2975 49 23Z"
-                                                fill="url(#paint0_linear_18_265)"
-                                            />
-                                            <defs>
-                                                <linearGradient
-                                                    id="paint0_linear_18_265"
-                                                    x1="24.5"
-                                                    y1="0"
-                                                    x2="24.5"
-                                                    y2="46"
-                                                    gradientUnits="userSpaceOnUse"
-                                                >
-                                                    <stop stop-color="#88E2FF" />
-                                                    <stop offset="1" stop-color="#AA9DFF" />
-                                                </linearGradient>
-                                            </defs>
-                                        </svg>
+                                        <img src="" />
                                         <div style="top: ${top + 24}px; left: 73px; position: relative">
                                             <div
                                                 style="
@@ -459,10 +562,103 @@
                 value = e.target.value;
             });
 
+            const closeChatButton = document.getElementById("closeChat");
+
             const submitButton = document.getElementById("submit");
             submitButton.addEventListener("click", (e) => {
+                inputBox.value = "";
+                if (value.slice(value.length - 4) === "/end") {
+                    chat.push({ text: value });
+                    chat.push({
+                        text: "That sounds amazing! I would love to learn more but have a good rest of your day!",
+                    });
+                    displayData();
+                    inputBox.remove();
+                    submitButton.remove();
+                    console.log(closeChatButton);
+                    closeChatButton.style =
+                        "top: 830px;left: 48px;width: 328px;height: 55px;flex-shrink: 0;border-radius: 25px;background: #4d5cb6;position: absolute;visibility: visible;";
+                    return;
+                }
                 chat.push({ text: value });
                 getData();
+            });
+
+            async function summarize(url) {
+                const apiUrl = url;
+
+                let longString = chat
+                    .map((object, index) => {
+                        return object.text;
+                    })
+                    .join("");
+
+                // Example data to send in the request body
+                const requestData = {
+                    text: longString,
+                };
+
+                // Make a POST request
+                const response = await fetch(apiUrl, {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify(requestData),
+                });
+                const data = await response.text();
+                return data;
+            }
+
+            function addDataToDB(title, summarizedText) {
+                var myHeaders = new Headers();
+                myHeaders.append("Content-Type", "application/json");
+
+                const date = new Date();
+                const todayDate = `01.${date.getUTCDate()}.${date.getUTCFullYear()}`;
+
+                var raw = JSON.stringify({
+                    title: title,
+                    text: summarizedText,
+                    date: todayDate,
+                });
+
+                var requestOptions = {
+                    method: "POST",
+                    headers: myHeaders,
+                    body: raw,
+                    redirect: "follow",
+                };
+
+                fetch(
+                    "https://nodeapi.jinsei.tech/entries/addEntry",
+                    requestOptions
+                )
+                    .then((response) => response.text())
+                    .then((result) => console.log(result))
+                    .catch((error) => console.log("error", error));
+            }
+
+            closeChatButton.addEventListener("click", async (e) => {
+                const chatBox = document.getElementById("chatbox");
+                chatBox.remove();
+
+                const dialog = document.getElementById(
+                    "conversationClosedDialog"
+                );
+                dialog.style =
+                    "   visibility: visible;width: 387px;height: 255px;flex-shrink: 0;border-radius: 25px;background: #fff;position: absolute;top: 335px;left: 19px;";
+
+                let summarizedText = await summarize(
+                    "https://api.jinsei.tech/summarize"
+                );
+                let title = await summarize(
+                    "https://api.jinsei.tech/generate_title"
+                );
+                console.log(`Title: ${title}`);
+                addDataToDB(title, summarizedText);
+
+                closeChatButton.remove();
             });
         </script>
     </body>

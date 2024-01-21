@@ -33,6 +33,11 @@
                 overflow: hidden;
                 user-select: none;
             }
+            #prompt_gen_popup {
+                display: none;
+                opacity: 0;
+                transition: opacity 0.5s ease-in-out;
+            }
         </style>
         <meta
             name="viewport"
@@ -49,7 +54,7 @@
                 />
                 <script>
                     function nav_goto_home() {
-                        window.location = "Homepage.html";
+                        window.location = "home.html";
                     }
                 </script>
                 <div
@@ -180,18 +185,24 @@
                 </script>
 
                 <div
+                    id="entrydata"
                     style="
                         position: absolute;
-                        width: 387px;
-                        height: 680px;
+                        width: 367px;
+                        height: 660px;
                         top: 214px;
                         left: 20px;
                         border-radius: 30px;
                         background-color: white;
+                        padding-top: 20px;
+                        padding-left: 20px;
+                        overflow: scroll;
                     "
+                    contenteditable=""
                 ></div>
 
                 <img
+                    id="generate"
                     src="https://raw.githubusercontent.com/Github11200/nwHacks-2024/main/assets/questionMark_noBackground.png"
                     style="
                         position: absolute;
@@ -200,22 +211,100 @@
                         left: 354px;
                     "
                 />
+
+                <span id="prompt_gen_popup">
+                    <div
+                        style="
+                            position: absolute;
+                            top: 0;
+                            left: 0;
+                            height: 926px;
+                            width: 428px;
+                            background-color: black;
+                            opacity: 0.5;
+                        "
+                    ></div>
+                    <img
+                        src="https://raw.githubusercontent.com/Github11200/nwHacks-2024/main/assets/promptGeneratorImage.png"
+                        style="
+                            position: absolute;
+                            width: 326px;
+                            top: 310px;
+                            left: 51px;
+                        "
+                    />
+                </span>
+
+                <img
+                    src="https://raw.githubusercontent.com/Github11200/nwHacks-2024/main/assets/submitEntry.png"
+                    style="
+                        position: absolute;
+                        width: 162px;
+                        top: 830px;
+                        left: 225px;
+                    "
+                />
+
+                <script>
+                    function showPopup() {
+                        var popup = document.getElementById("prompt_gen_popup");
+                        popup.style.display = "block";
+                        // Delaying setting opacity to 1 to ensure the fade-in effect
+                        setTimeout(() => {
+                            popup.style.opacity = 1;
+                        }, 0); // You can adjust this delay if needed
+                    }
+
+                    function hidePopup() {
+                        var popup = document.getElementById("prompt_gen_popup");
+                        popup.style.opacity = 0;
+                        setTimeout(() => {
+                            popup.style.display = "none";
+                        }, 0); // Adjusted to 0.5 seconds (500 milliseconds)
+                    }
+
+                    // localStorage.removeItem("lastClosedTime")
+                    function canShowPopup() {
+                        // Check if 10 minutes have passed since the last time the popup was closed
+                        var lastClosedTime =
+                            localStorage.getItem("lastClosedTime");
+                        if (
+                            !lastClosedTime ||
+                            Date.now() - lastClosedTime > 600000
+                        ) {
+                            return true;
+                        }
+                        return false;
+                    }
+
+                    document
+                        .getElementById("generate")
+                        .addEventListener("click", function () {
+                            if (canShowPopup()) {
+                                showPopup();
+                            } else {
+                                // Call AI Question Generation Tool
+                            }
+                        });
+
+                    document
+                        .getElementById("prompt_gen_popup")
+                        .addEventListener("click", function () {
+                            var popup =
+                                document.getElementById("prompt_gen_popup");
+                            popup.style.opacity = 0;
+                            setTimeout(() => {
+                                popup.style.display = "none";
+                                // Store the current time when the popup is closed
+                                localStorage.setItem(
+                                    "lastClosedTime",
+                                    Date.now()
+                                );
+                            }, 0); // Adjusted to 0.5 seconds (500 milliseconds)
+                        });
+                </script>
             </div>
         </div>
-
-        <iframe
-            src="signin.html"
-            frameborder="none"
-            style="
-                height: 926px;
-                width: 428px;
-                position: absolute;
-                top: 0;
-                left: 0;
-                z-index: -1;
-            "
-        ></iframe>
-
         <script>
             function adjustZoom() {
                 const bodyWidth = document.body.offsetWidth;
@@ -230,57 +319,6 @@
             }
 
             adjustZoom();
-
-            var restrictElement = document.getElementById("app");
-
-            function handleScroll(event) {
-                var scrollTop = window.scrollY;
-
-                // Check if the user is trying to scroll past the restricted element
-                if (scrollTop > restrictElement.offsetTop) {
-                    // Prevent default scroll behavior
-                    event.preventDefault();
-                }
-            }
-
-            // Attach the scroll event listener to the window
-            window.addEventListener("scroll", handleScroll);
-
-            document.addEventListener("contextmenu", function (e) {
-                // Check if the right-clicked element is not an input field
-                if (
-                    e.target.tagName.toLowerCase() !== "input" &&
-                    e.target.tagName.toLowerCase() !== "textarea"
-                ) {
-                    e.preventDefault(); // Disable the right-click context menu
-                }
-            });
-
-            var textboxes = document.querySelectorAll("input");
-
-            function scrollToTop() {
-                window.scrollTo({ top: 0 });
-            }
-
-            var textInputs = document.querySelectorAll("input");
-            textInputs.forEach(function (textInput) {
-                textInput.addEventListener("blur", scrollToTop);
-            });
-
-            function fadeAway() {
-                // Prevent the default behavior of the anchor tag (preventing redirection)
-                event.preventDefault();
-
-                // Add a class to initiate the fade-out effect
-                document
-                    .querySelector(".grand-parent")
-                    .classList.add("fade-out");
-
-                // Optional: You can add a timeout to redirect after the animation completes
-                setTimeout(function () {
-                    window.location.href = "signin.html";
-                }, 1500);
-            }
         </script>
     </body>
 </html>

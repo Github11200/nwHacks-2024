@@ -5,6 +5,7 @@ const entries = require("./routes/entries");
 
 dotenv.config();
 
+app.use(cors());
 app.use("/entries", entries);
 
 app.listen(process.env.PORT, async () => {

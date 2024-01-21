@@ -1,4 +1,4 @@
-const { express, cors } = require("../exports");
+const { express, cors, app } = require("../exports");
 const {
     addEntry,
     removeEntry,
@@ -8,16 +8,10 @@ const {
 const router = express.Router();
 
 router.use(cors());
+app.use(express.json());
 
 router.post("/addEntry", async (req, res) => {
-    let testObject = {
-        date: 12,
-        title: "hi",
-        text: "test",
-        messages: [{ messageFromBot: false, message: "message" }],
-        id: 123,
-    };
-    await addEntry({ ...testObject })
+    await addEntry(req.body.date, req.body.title, req.body.text)
         .then(res.send(200))
         .catch((error) => {
             res.send(error);
