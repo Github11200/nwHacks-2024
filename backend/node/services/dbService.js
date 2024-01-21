@@ -1,33 +1,45 @@
 const { MongoClient } = require("../exports").mongodb;
-const uri = "mongodb+srv://admin:cheesy@main.zw4cc0s.mongodb.net/?retryWrites=true&w=majority";
+const uri = "mongodb+srv://admin:cheesy@main.k98k84m.mongodb.net/?retryWrites=true&w=majority";
 
 const client = new MongoClient(uri);
+// const databaseName = "entries";
+// const collectionName = "entriesCollection";
 
-const addEntry = async () => {
-
-}
-
-const getAllEntries = async () => {
+const addEntry = async (date, title, text, id) => {
     try {
-        // Connect to the Atlas cluster
         await client.connect();
-        const db = client.db("test");
-        // Reference the "people" collection in the specified database
-        const col = db.collection("people");
-        // Insert the document into the specified collection        
-        await col.insertOne({
-            "name": { "first": "Alan", "last": "Turing" },
-            "birth": new Date(1912, 5, 23), // May 23, 1912                                                                                                                                 
-            "death": new Date(1954, 5, 7),  // May 7, 1954                                                                                                                                  
-            "contribs": [ "Turing machine", "Turing test", "Turingery" ],
-            "views": 1250000
+        const db = await client.db("entries");
+        const collection = await db.collection("entriesCollection");
+        await collection.insertOne({
+            date: date,
+            title: title,
+            text: text,
+            id: id
         });
-        console.log("Document found:\n" + JSON.stringify(document));
+        console.log("Entry was added to the database.");
     } catch {
-        console.log("Could not connect");
+        console.log("Could not add entry to the database.");
     }
 }
 
+const removeEntry = async(id) => {
+    try {
+        await client.connect();
+        const db = await client.db("entries");
+        const collection = await db.collection("entriesCollection");
+
+        await collection.deleteOne({ id: id });
+        console.log("Removed the entry from the database.");
+    } catch {
+        console.log("Could not remove entry to the database");
+    }
+}
+
+const getAllEntries = async () => {
+}
+
 module.exports = {
+    addEntry,
+    removeEntry,
     getAllEntries
 }
