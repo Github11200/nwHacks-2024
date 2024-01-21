@@ -6,7 +6,7 @@ const client = new MongoClient(uri);
 const databaseName = "entries";
 const collectionName = "entriesCollection";
 
-const addEntry = async (date, title, text, id) => {
+const addEntry = async ({ date, title, text, id }) => {
     try {
         await client.connect();
         const db = await client.db(databaseName);
