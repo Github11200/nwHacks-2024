@@ -1,0 +1,216 @@
+<html>
+<head>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@700&display=swap');
+    :root {
+        font-family: 'Inter', sans-serif;
+        --platform: "WEB"
+    }
+    html {
+        background-color: rgba(191, 215, 255, 1);
+        margin: 0px;
+        padding: 0px;
+    }
+    .grand-parent {
+        position: relative;
+        height: 926px;
+        width: 428px;
+        background-color: rgba(191, 215, 255, 1);
+        overflow: hidden;
+        transition: opacity 1.5s ease-in-out;
+    }
+
+    .fade-out {
+    opacity: 0;
+    }
+
+    .parent {
+        overflow: hidden;
+    }
+    body {
+        margin: 0px;
+        overflow: hidden;
+        user-select: none;
+    }
+    #prompt_gen_popup {
+      display: none;
+      opacity: 0;
+      transition: opacity 0.5s ease-in-out;
+    }
+
+</style>
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+</head>
+<body>
+    <div class="grand-parent" id="app">
+        <div class="parent">
+        
+            <!-- Go home snippet -->
+            <img style="position: absolute; top: 50; left: 10; width: 50px;" src="https://raw.githubusercontent.com/Github11200/nwHacks-2024/main/assets/leftArrow.png">
+            <script>function nav_goto_home() {window.location = "home.html"}</script>
+            <div onclick="nav_goto_home()" style="position: absolute; background-color: aquamarine; width: 50px; height: 50px; top:50; left: 10px; opacity: 0" id="Logbook"></div>
+            <!-- End of Snippet -->
+
+
+            <div style="position: absolute; top: 717px; left: -86px; width: 401px; height: 336px; background-color: rgba(84, 101, 255, 0.86); border-radius: 50%;"></div>
+            <div style="position: absolute; top: 648px; left: 123.44px; width: 457px; height: 444px; background-color: rgba(155, 177, 255, 0.7); border-radius: 50%;"></div>
+            <!-- <div style="position: absolute; top: 271px; left: -173px; width: 457px; height:444px; border-radius: 50%; background-color: rgba(120, 139, 255, 0.63);"></div> -->
+            
+            <span style="position: absolute; top: 120px; left: 19px; font-weight: 700; color: rgba(39, 51, 158, 1)">
+                <div style="font-size: 30px; white-space: nowrap; max-width: 100%; width: 380px;">My Personal</div>
+                <div style="font-size: 45px; white-space: nowrap; max-width: 100%; width: 320px;">Logbook</div>
+            </span>
+
+            <input type="text" placeholder="Search for entry" style="border: none; padding-left: 20px; height: 55px; width: 387px; position: absolute; top: 241px; left: 20px; border-radius: 30px; font-size: 15px;">
+
+            <img src="https://raw.githubusercontent.com/Github11200/nwHacks-2024/main/assets/searchIcon.png" style="position: absolute; left: 355px; top: 247px; width: 50px;">
+
+            <div id="logs" style="position: absolute; width:362px; height:486px; top:313px; left: 23px; border-radius: 30px; background-color: white; padding-left: 20px; padding-top: 10px; color: rgba(77, 92, 182, 1); overflow: scroll">
+                <!-- <div>
+                    <span style="font-weight: 700; font-size: 15px; margin-top: 10px;">nwHacks 2024 Hackathon :)</span>
+                    <br>
+                    <span style="font-weight: 400; font-size: 12px;">01.20.2024</span>
+                    <div style="width: 333px; height: 1px; background-color: rgba(191, 215, 255, 1); margin-left: 5px; margin-top: 10px;"></div>
+                </div> -->
+            </div>
+
+            <!-- Navigation Buttons Snippet by Eric -->
+
+            <img style="position: absolute; top: 836; left: 115; width: 80px;" src="https://raw.githubusercontent.com/Github11200/nwHacks-2024/main/assets/logBook.png">
+            <img style="position: absolute; top: 843; left: 260; width: 38px;" src="https://raw.githubusercontent.com/Github11200/nwHacks-2024/main/assets/home.png">
+
+            <div onclick="nav_goto_logbook()" style="position: absolute; background-color: aquamarine; width: 100px; height: 100px; top:826; left: 105px; opacity: 0" id="Logbook"></div>
+            <div onclick="nav_goto_home()" style="position: absolute; background-color: aquamarine; width: 100px; height: 100px; top:826; left: 230px; opacity: 0" id="Home"></div>
+
+            <script>
+                function nav_goto_logbook() {window.location = "logbook.html"}
+                function nav_goto_home() {window.location = "home.html"}
+            </script>
+
+            <!--End of Navigation Button Snippet -->
+        </div>
+
+    </div>
+
+    <div id="text_all" style="display: none;">
+        <div style="position: absolute; top: 0; left:0; height: 926px; width: 428px; background-color: rgba(0,0,0,0.5); z-index: 9999999;"></div>
+        <div id="text_fun" style="position: absolute; top: 210; left:50; height: 450px; width: 290px; background-color: white; z-index: 99999999; border-radius: 30px; padding: 20px; overflow: scroll">
+        </div>
+    </div>
+
+
+
+    <script>
+
+        document.getElementById("text_all").addEventListener('click', function() {
+            document.getElementById("text_all").style.display = "none";
+        })
+
+        function showtext(text, date, title) {
+            console.log(text)
+            document.getElementById("text_fun").innerHTML =  "<span style='font-weight: 700; font-size: 20px; color: rgba(39, 51, 158, 1)'>"+ title + "</span><br>" + date + "<br><br>" + text;
+            document.getElementById("text_all").style.display = "block";
+        }
+
+        fetch('https://nodeapi.jinsei.tech/entries/getAllEntries')
+        .then(response => {
+
+            if (!response.ok) {
+            throw new Error('Network response was not ok');
+            }
+            return response.json();
+        })
+        .then(data => {
+            var events = data.map(entry => {
+            return {
+                title: entry.title,
+                date: entry.date.toString().replaceAll('"', '').replaceAll('"', ''), // Assuming date is a string, adjust accordingly if it's a different data type
+                text: entry.text.toString().replaceAll('"', '').replaceAll('"', '').replaceAll("\\n", "\n")
+            };
+            });
+
+            console.log(events);
+        
+    
+        // Function to create elements and append them to the "logs" div
+        function createEventElements(event) {
+            var logDiv = document.createElement("div");
+            logDiv.style.marginTop = "10px";
+            logDiv.style.opacity = "0";
+            logDiv.style.transition = "opacity 0.5s";
+
+            logDiv.setAttribute("text", event.text)
+    
+            var titleSpan = document.createElement("span");
+            titleSpan.style.fontWeight = "700";
+            titleSpan.style.fontSize = "15px";
+            titleSpan.style.marginTop = "20px";
+            titleSpan.textContent = event.title;
+    
+            var dateSpan = document.createElement("span");
+            dateSpan.style.fontWeight = "400";
+            dateSpan.style.fontSize = "12px";
+            dateSpan.textContent = event.date;
+
+
+    
+            var lineDiv = document.createElement("div");
+            lineDiv.style.width = "333px";
+            lineDiv.style.height = "1px";
+            lineDiv.style.backgroundColor = "rgba(191, 215, 255, 1)";
+            lineDiv.style.marginLeft = "5px";
+            lineDiv.style.marginTop = "10px";
+    
+            logDiv.appendChild(titleSpan);
+            logDiv.appendChild(document.createElement("br"));
+            logDiv.appendChild(dateSpan);
+            logDiv.appendChild(lineDiv);
+    
+            document.getElementById("logs").appendChild(logDiv);
+
+            logDiv.addEventListener('click', function() {
+                showtext(logDiv.getAttribute("text"), event.date, event.title)
+            })
+
+            setTimeout(function () {
+                logDiv.style.opacity = "1";
+            }, 10);
+        }
+    
+        var currentIndex = 0;
+        var intervalId = setInterval(function () {
+    if (currentIndex < events.length) {
+        createEventElements(events[currentIndex]);
+        currentIndex++;
+    } else {
+        clearInterval(intervalId); // Stop the interval once all events are created
+    }
+}, 225);
+
+        // for (var i = 0; i < events.length; i++) {
+        //     createEventElements(events[i]);
+        // }
+
+    })
+        .catch(error => {
+            console.error('There was a problem with the fetch operation:', error);
+        });
+    </script>
+    <script>
+        function adjustZoom() {
+          const bodyWidth = document.body.offsetWidth;
+          const elementWidth = document.querySelector('.grand-parent').offsetWidth;
+    
+          // Calculate the desired zoom level
+          const zoomLevel = (bodyWidth / elementWidth) * 100;
+    
+          // Set the zoom level on the body
+          document.body.style.zoom = zoomLevel + '%';
+        }
+    
+        adjustZoom()
+    </script>
+</body>
+</html>

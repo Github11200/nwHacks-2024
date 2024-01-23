@@ -1,0 +1,668 @@
+<html>
+    <head>
+        <style>
+            @import url("https://fonts.googleapis.com/css2?family=Inter&display=swap");
+            @import url("https://fonts.googleapis.com/css2?family=Inter:wght@700&display=swap");
+            :root {
+                font-family: "Inter", sans-serif;
+                --platform: "WEB";
+            }
+            html {
+                background-color: #bfd7ff;
+                margin: 0px;
+                padding: 0px;
+            }
+            .grand-parent {
+                position: relative;
+                height: 926px;
+                width: 428px;
+                background-color: #bfd7ff;
+                overflow: hidden;
+            }
+            .parent {
+                overflow: hidden;
+            }
+            body {
+                margin: 0px;
+                overflow: hidden;
+                user-select: none;
+            }
+        </style>
+        <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1, user-scalable=no"
+        />
+        <script src="https://cdn.auth0.com/js/lock/12.4/lock.min.js"></script>
+    </head>
+    <body>
+        <div class="grand-parent" id="app">
+            <div class="parent">
+                <div
+                    style="
+                        width: 673px;
+                        height: 518px;
+                        flex-shrink: 0;
+                        background-color: #5465ffdb;
+                        border-radius: 50%;
+                        position: absolute;
+                        right: 47px;
+                        top: 376px;
+                        opacity: 70%;
+                    "
+                ></div>
+                <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="230"
+                    height="470"
+                    viewBox="0 0 230 470"
+                    fill="none"
+                    style="top: 283px; left: 198px; position: absolute"
+                >
+                    <path
+                        d="M457 235C457 364.787 354.697 470 228.5 470C102.303 470 9.4317e-06 364.787 9.4317e-06 235C9.4317e-06 105.213 102.303 0 228.5 0C354.697 0 457 105.213 457 235Z"
+                        fill="#788BFF"
+                    />
+                </svg>
+                <a href="logbook.html">
+                    <div
+                        id="conversationClosedDialog"
+                        style="
+                            visibility: hidden;
+                        "
+                    >
+                        <span
+                            style="
+                                color: #000;
+                                font-family: Inter;
+                                font-size: 35px;
+                                font-style: normal;
+                                font-weight: 700;
+                                line-height: 45px;
+                                letter-spacing: -0.408px;
+                                width: 234px;
+                                height: 135px;
+                                position: relative;
+                                top: 32px;
+                                left: 35px;
+                                visibility: inherit;
+                            "
+                        >
+                            Conversation
+                            <br />
+                            Closed.
+                        </span>
+                        <div
+                            id="viewNewEntry"
+                            style="
+                                visibility: inherit;
+                                border-radius: 25px;
+                                background: #5465ff;
+                                width: 234px;
+                                height: 55px;
+                                flex-shrink: 0;
+                                position: relative;
+                                left: 28px;
+                                top: 55px;
+                            "
+                        >
+                            <span
+                                style="
+                                    color: #fff;
+                                    visibility: inherit;
+                                    font-family: Inter;
+                                    font-size: 20px;
+                                    font-style: normal;
+                                    font-weight: 700;
+                                    line-height: 45px; /* 225% */
+                                    letter-spacing: -0.408px;
+                                    position: relative;
+                                    top: 5px;
+                                    left: 25px;
+                                "
+                            >
+                                view all entries
+                            </span>
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="7"
+                                height="12"
+                                viewBox="0 0 7 12"
+                                fill="none"
+                                style="
+                                    position: relative;
+                                    left: 50px;
+                                    top: 7px;
+                                    width: 18px;
+                                    height: 18px;
+                                "
+                            >
+                                <path
+                                    d="M1 1L6 6L1 11"
+                                    stroke="white"
+                                    stroke-width="2"
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                />
+                            </svg>
+                        </div>
+                    </div>
+                </a>
+                    <path
+                        d="M198 235C198 364.787 95.6971 470 -30.5 470C-156.697 470 -259 364.787 -259 235C-259 105.213 -156.697 0 -30.5 0C95.6971 0 198 105.213 198 235Z"
+                        fill="#9BB1FF"
+                        fill-opacity="0.7"
+                    />
+                </svg>
+                <div
+                    style="
+                        color: #27339e;
+                        font-style: normal;
+                        font-weight: 700;
+                        line-height: normal;
+                        position: absolute;
+                        left: 20px;
+                        top: 105px;
+                        font-weight: 700;
+                    "
+                >
+                    <span style="font-size: 30px">New</span><br /><span
+                        style="font-size: 50px"
+                        >AI Chat Entry</span
+                    >
+                </div>
+
+                <div
+                    style="
+                        width: 387px;
+                        height: 595px;
+                        flex-shrink: 0;
+                        border-radius: 25px;
+                        background: #fff;
+                        position: absolute;
+                        top: 215px;
+                        left: 20px;
+                        overflow-x: hidden;
+                        overflow-y: scroll;
+                        padding-bottom: 5px;
+                    "
+                    id="chatbox"
+                >
+                <!-- <div>
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="49"
+                            height="46"
+                            viewBox="0 0 49 46"
+                            fill="none"
+                            style="position: relative; top: 55px; left: 16px"
+                        >
+                            <path
+                                d="M49 23C49 35.7025 38.031 46 24.5 46C10.969 46 0 35.7025 0 23C0 10.2975 10.969 0 24.5 0C38.031 0 49 10.2975 49 23Z"
+                                fill="url(#paint0_linear_18_265)"
+                            />
+                            <defs>
+                                <linearGradient
+                                    id="paint0_linear_18_265"
+                                    x1="24.5"
+                                    y1="0"
+                                    x2="24.5"
+                                    y2="46"
+                                    gradientUnits="userSpaceOnUse"
+                                >
+                                    <stop stop-color="#88E2FF" />
+                                    <stop offset="1" stop-color="#AA9DFF" />
+                                </linearGradient>
+                            </defs>
+                        </svg>
+                        <div style="top: -14px; left: 73px; position: relative">
+                            <div
+                                style="
+                                    display: flex;
+                                    padding: 6px 12px;
+                                    align-items: flex-start;
+                                    flex: 1 0 0;
+                                    align-self: stretch;
+                                    border-radius: 18px;
+                                    background: #bfd7ff;
+                                    width: 267px;
+                                    color: var(
+                                        --Label-Color-Light-Primary,
+                                        #000
+                                    );
+                                    font-family: Inter;
+                                    font-size: 17px;
+                                    font-style: normal;
+                                    font-weight: 400;
+                                    line-height: 22px; /* 129.412% */
+                                    letter-spacing: -0.408px;
+                                "
+                            >
+                                <span style="flex: 1 0 0">
+                                    Hey {Name}, tell me a bit about your day.
+                                    What did you do, how did you feel?
+                                    <b>To end the chat type /end.</b></span
+                                >
+                            </div>
+                        </div>
+                    </div>
+                    <div style="position: relative; left: 73px; top: 10px">
+                        <div
+                            style="
+                                display: flex;
+                                padding: 6px 12px;
+                                align-items: flex-start;
+                                flex: 1 0 0;
+                                align-self: stretch;
+                                border-radius: 18px;
+                                background: #4d5cb6;
+                                width: 267px;
+                                color: var(--Label-Color-Light-Primary, #000);
+                                font-family: Inter;
+                                font-size: 17px;
+                                font-style: normal;
+                                font-weight: 400;
+                                line-height: 22px;
+                                letter-spacing: -0.408px;
+                            "
+                        >
+                            My day was pretty good, I woke up today pretty late
+                            and then got the bus to go to ubc to go to the
+                            hackathon. Hackathon started at like 11, and i met
+                            my group. Lunch was pizza, oh ya the hackathon
+                            started at 12. And then we came up with some ideas
+                            and right now I am responding to you.
+                        </div>
+                    </div>  -->
+                </div>
+
+                <div
+                    id="closeChat"
+                    style="
+                        top: 830px;
+                        left: 48px;
+                        width: 328px;
+                        height: 55px;
+                        flex-shrink: 0;
+                        border-radius: 25px;
+                        background: #4d5cb6;
+                        position: absolute;
+                        visibility: hidden;
+                    "
+                >
+                    <span
+                        style="
+                            color: #fff;
+                            position: relative;
+                            top: 14px;
+                            left: 30px;
+                            font-family: Inter;
+                            font-size: 20px;
+                            font-style: normal;
+                            font-weight: 700;
+                            line-height: normal;
+                        "
+                        >close conversation</span
+                    ><svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="7"
+                        height="12"
+                        viewBox="0 0 7 12"
+                        fill="none"
+                        style="
+                            position: relative;
+                            left: 100px;
+                            top: 17px;
+                            width: 18px;
+                            height: 18px;
+                        "
+                    >
+                        <path
+                            d="M1 1L6 6L1 11"
+                            stroke="white"
+                            stroke-width="2"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                        />
+                    </svg>
+                </div>
+
+                <input
+                    type="text"
+                    placeholder="Enter Text"
+                    style="
+                        width: 350px;
+                        height: 55px;
+                        flex-shrink: 0;
+                        border-radius: 25px;
+                        position: absolute;
+                        top: 839px;
+                        left: 20px;
+                        outline: none;
+                        border: none;
+                        padding-left: 22px;
+                        font-size: 15px;
+                    "
+                    id="textInput"
+                    value=""
+                />
+                <img
+                    style="
+                        position: absolute;
+                        top: 848px;
+                        left: 380px;
+                        width: 44px;
+                        height: 44px;
+                    "
+                    id="submit"
+                    src="https://raw.githubusercontent.com/Github11200/nwHacks-2024/main/assets/upArrow.png"
+                />
+
+                <!-- Go home snippet -->
+                <img
+                    style="position: absolute; top: 50; left: 10; width: 50px"
+                    src="https://raw.githubusercontent.com/Github11200/nwHacks-2024/main/assets/leftArrow.png"
+                />
+                <script>
+                    function nav_goto_home() {
+                        window.location = "home.html";
+                    }
+                </script>
+                <div
+                    onclick="nav_goto_home()"
+                    style="
+                        position: absolute;
+                        background-color: aquamarine;
+                        width: 50px;
+                        height: 50px;
+                        top: 50;
+                        left: 10px;
+                        opacity: 0;
+                        z-index: 99999;
+                    "
+                    id="Logbook"
+                ></div>
+                <!-- End of Snippet -->
+            </div>
+        </div>
+
+        <script>
+            function adjustZoom() {
+                const bodyWidth = document.body.offsetWidth;
+                const elementWidth =
+                    document.querySelector(".grand-parent").offsetWidth;
+
+                // Calculate the desired zoom level
+                const zoomLevel = (bodyWidth / elementWidth) * 100;
+
+                // Set the zoom level on the body
+                document.body.style.zoom = zoomLevel + "%";
+            }
+
+            adjustZoom();
+
+            var restrictElement = document.getElementById("app");
+
+            function handleScroll(event) {
+                var scrollTop = window.scrollY;
+
+                // Check if the user is trying to scroll past the restricted element
+                if (scrollTop > restrictElement.offsetTop) {
+                    // Prevent default scroll behavior
+                    event.preventDefault();
+                }
+            }
+
+            // Attach the scroll event listener to the window
+            window.addEventListener("scroll", handleScroll);
+
+            document.addEventListener("contextmenu", function (e) {
+                // Check if the right-clicked element is not an input field
+                if (
+                    e.target.tagName.toLowerCase() !== "input" &&
+                    e.target.tagName.toLowerCase() !== "textarea"
+                ) {
+                    e.preventDefault(); // Disable the right-click context menu
+                }
+            });
+
+            var textboxes = document.querySelectorAll("input");
+
+            function scrollToTop() {
+                window.scrollTo({ top: 0 });
+            }
+
+            var textInputs = document.querySelectorAll("input");
+            textInputs.forEach(function (textInput) {
+                textInput.addEventListener("blur", scrollToTop);
+            });
+        </script>
+
+        <!-- THIS SCRIPT IS FOR FETCHING DATA FROM CHATGPT -->
+        <script>
+            let value = "";
+            let chat = [
+                {
+                    text: "Hey! Tell me a bit about your day. What did you do, how did you feel? To end the chat type /end.",
+                },
+            ];
+
+            function displayData() {
+                const root = document.getElementById("chatbox");
+                let top = -45;
+
+                const mappedChat = chat.map((object, index) => {
+                    let innerHTML = null;
+
+                    if (index % 2 !== 0) {
+                        return `<div style="position: relative; left: 84px; margin-top: 5px">
+                                        <div
+                                            style="
+                                                display: flex;
+                                                padding: 6px 12px;
+                                                align-items: flex-start;
+                                                flex: 1 0 0;
+                                                align-self: stretch;
+                                                border-radius: 18px;
+                                                background: #4d5cb6;
+                                                width: 267px;
+                                                color: var(--Label-Color-Light-Primary, #000);
+                                                font-family: Inter;
+                                                font-size: 17px;
+                                                font-style: normal;
+                                                font-weight: 400;
+                                                line-height: 22px;
+                                                letter-spacing: -0.408px;
+                                                color: #FFF;
+                                            "
+                                        >
+                                            ${object.text}
+                                        </div>
+                                    </div>`;
+                    } else {
+                        return `
+                                    <div style="position: relative; display: flex; align-items: center; left: 15px; gap: 12px; margin-top: ${index === 0 ? 10 : 5}px">
+                                        <img src="https://raw.githubusercontent.com/Github11200/nwHacks-2024/main/assets/robotWithBackground.png" style="width: 49px; height: 49px" />
+                                        <div style="">
+                                            <div
+                                                style="
+                                                    display: flex;
+                                                    padding: 6px 12px;
+                                                    align-items: flex-start;
+                                                    flex: 1 0 0;
+                                                    align-self: stretch;
+                                                    border-radius: 18px;
+                                                    background: #bfd7ff;
+                                                    width: 267px;
+                                                    color: var(
+                                                        --Label-Color-Light-Primary,
+                                                        #000
+                                                    );
+                                                    font-family: Inter;
+                                                    font-size: 17px;
+                                                    font-style: normal;
+                                                    font-weight: 400;
+                                                    line-height: 22px; /* 129.412% */
+                                                    letter-spacing: -0.408px;
+                                                "
+                                            >
+                                                <span style="flex: 1 0 0">
+                                                    ${object.text}</span
+                                                >
+                                            </div>
+                                        </div>
+                                    </div>
+                                    `;
+                    }
+                });
+
+                root.innerHTML = mappedChat;
+
+                root.scrollTop = root.scrollHeight;
+            }
+
+            displayData();
+
+            function getData() {
+                const apiUrl = "https://api.jinsei.tech/generate_prompt";
+
+                // Example data to send in the request body
+                const requestData = {
+                    already_asked: chat
+                        .map((object, index) => {
+                            if (index % 2 !== 0) {
+                                return object.text;
+                            }
+                        })
+                        .filter((object) => {
+                            return object;
+                        }),
+                };
+
+                console.log(requestData);
+
+                // Make a POST request
+                fetch(apiUrl, {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify(requestData),
+                })
+                    .then((response) => response.text())
+                    .then((data) => {
+                        // Handle the response data
+                        chat.push({ text: data });
+                        displayData();
+                    })
+                    .catch((error) => {
+                        // Handle errors
+                        console.error("Error:", error);
+                    });
+            }
+
+            const inputBox = document.getElementById("textInput");
+            inputBox.addEventListener("change", (e) => {
+                value = e.target.value;
+            });
+
+            const closeChatButton = document.getElementById("closeChat");
+
+            const submitButton = document.getElementById("submit");
+            submitButton.addEventListener("click", (e) => {
+                inputBox.value = "";
+                if (value.slice(value.length - 4) === "/end") {
+                    chat.push({ text: value });
+                    chat.push({
+                        text: "That sounds amazing! I would love to learn more but have a good rest of your day!",
+                    });
+                    displayData();
+                    inputBox.remove();
+                    submitButton.remove();
+                    console.log(closeChatButton);
+                    closeChatButton.style =
+                        "top: 830px;left: 48px;width: 328px;height: 55px;flex-shrink: 0;border-radius: 25px;background: #4d5cb6;position: absolute;visibility: visible;";
+                    return;
+                }
+                chat.push({ text: value });
+                getData();
+            });
+
+            async function summarize(url) {
+                const apiUrl = url;
+
+                let longString = chat
+                    .map((object, index) => {
+                        return object.text;
+                    })
+                    .join("");
+
+                // Example data to send in the request body
+                const requestData = {
+                    text: longString,
+                };
+
+                // Make a POST request
+                const response = await fetch(apiUrl, {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify(requestData),
+                });
+                const data = await response.text();
+                return data;
+            }
+
+            function addDataToDB(title, summarizedText) {
+                var myHeaders = new Headers();
+                myHeaders.append("Content-Type", "application/json");
+
+                const date = new Date();
+                const todayDate = `01.${date.getUTCDate()}.${date.getUTCFullYear()}`;
+
+                var raw = JSON.stringify({
+                    title: title,
+                    text: summarizedText,
+                    date: todayDate,
+                });
+
+                var requestOptions = {
+                    method: "POST",
+                    headers: myHeaders,
+                    body: raw,
+                    redirect: "follow",
+                };
+
+                fetch(
+                    "https://nodeapi.jinsei.tech/entries/addEntry",
+                    requestOptions
+                )
+                    .then((response) => response.text())
+                    .then((result) => console.log(result))
+                    .catch((error) => console.log("error", error));
+            }
+
+            closeChatButton.addEventListener("click", async (e) => {
+                const chatBox = document.getElementById("chatbox");
+                chatBox.remove();
+                closeChatButton.remove();
+
+
+                const dialog = document.getElementById(
+                    "conversationClosedDialog"
+                );
+                dialog.style =
+                    "   visibility: visible;width: 387px;height: 255px;flex-shrink: 0;border-radius: 25px;background: #fff;position: absolute;top: 335px;left: 19px;";
+
+                let summarizedText = await summarize(
+                    "https://api.jinsei.tech/summarize"
+                );
+                let title = await summarize(
+                    "https://api.jinsei.tech/generate_title"
+                );
+                console.log(`Title: ${title}`);
+                addDataToDB(title, summarizedText);
+            });
+        </script>
+    </body>
+</html>

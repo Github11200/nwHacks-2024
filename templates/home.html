@@ -1,0 +1,201 @@
+<html>
+<head>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@700&display=swap');
+    :root {
+        font-family: 'Inter', sans-serif;
+        --platform: "WEB"
+    }
+    html {
+        background-color: rgba(191, 215, 255, 1);
+        margin: 0px;
+        padding: 0px;
+    }
+    .grand-parent {
+        position: relative;
+        height: 926px;
+        width: 428px;
+        background-color: rgba(191, 215, 255, 1);
+        overflow: hidden;
+        transition: opacity 1.5s ease-in-out;
+    }
+
+    .fade-out {
+    opacity: 0;
+    }
+
+    .parent {
+        overflow: hidden;
+    }
+    body {
+        margin: 0px;
+        overflow: hidden;
+        user-select: none;
+    }
+    #bot_entry{
+    opacity: 0;
+    }
+    #self_entry {
+    opacity: 0;
+    }
+</style>
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+</head>
+<body>
+    <div class="grand-parent" id="app">
+        <div class="parent">
+        
+            
+
+            <!-- <div style="position: absolute; background-color: aquamarine; width: 100px; height: 100px; top:826; left: 100px;"></div> -->
+
+            <div style="position: absolute; top: 717px; left: -86px; width: 401px; height: 356px; background-color: rgba(84, 101, 255, 0.86); border-radius: 50%;"></div>
+            <div style="position: absolute; top: 648px; left: 123.44px; width: 457px; height: 464px; background-color: rgba(155, 177, 255, 0.7); border-radius: 50%;"></div>
+            
+            <span style="position: absolute; top: 204px; left: 60px; font-weight: 700; color: rgba(39, 51, 158, 1)">
+                <span style="font-size: 30px; padding-left: 3px;">Whats on Your<br></span>
+                <span style="font-size: 50px;">Mind Today?</span>
+            </span>
+
+            <img id="bot_entry" src="https://raw.githubusercontent.com/Github11200/nwHacks-2024/main/assets/newChatBotLogo.png" style="position: absolute; width: 300px; top: 386px; left: 65px; border-radius: 30px; opacity: 0;">
+            <img id="self_entry" src="https://raw.githubusercontent.com/Github11200/nwHacks-2024/main/assets/newSelfEntryLogo.png" style="position: absolute; width: 300px; top: 517px; left: 65px; border-radius: 30px; opacity: 0;">
+            
+            <!-- Navigation Buttons Snippet by Eric -->
+            
+            <script>
+                document.addEventListener("DOMContentLoaded", function() {
+                    var botEntry = document.getElementById("bot_entry");
+                    var selfEntry = document.getElementById("self_entry");
+            
+                    // Function to fade in an element
+                    function fadeIn(element) {
+                        var opacity = 0;
+                        var interval = setInterval(function() {
+                            if (opacity < 1) {
+                                opacity += 0.1;
+                                element.style.opacity = opacity;
+                            } else {
+                                clearInterval(interval);
+                            }
+                        }, 100);
+                    }
+            
+                    function animate() {
+                        fadeIn(botEntry);
+                        setTimeout(function() {
+                            fadeIn(selfEntry);
+                        }, 400);
+                    }
+            
+                    setTimeout(animate, 300);
+                });
+            </script>
+
+            <script>
+                function nav_goto_logbook() {window.location = "logbook.html"}
+                function nav_goto_home() {window.location = "home.html"}
+                
+            var self_entry = document.getElementById('self_entry');
+
+            // Add an event listener for the 'click' event
+            self_entry.addEventListener('click', function() {
+                // Redirect to Google
+                window.location = 'new_self_entry.html';
+            });
+
+            var bot_entry = document.getElementById('bot_entry');
+
+            // Add an event listener for the 'click' event
+            bot_entry.addEventListener('click', function() {
+                // Redirect to Google
+                window.location = 'new_bot_entry.html';
+            });
+            </script>
+
+
+            <img onclick="nav_goto_new_ai_chat()" style="position: absolute; top: 836; left: 115; width: 80px;" src="https://raw.githubusercontent.com/Github11200/nwHacks-2024/main/assets/logBook.png">
+            <img onclick="nav_goto_new_self_entry()" style="position: absolute; top: 843; left: 260; width: 38px;" src="https://raw.githubusercontent.com/Github11200/nwHacks-2024/main/assets/home.png">
+
+
+
+            <div onclick="nav_goto_logbook()" style="position: absolute; background-color: aquamarine; width: 100px; height: 100px; top:826; left: 105px; opacity: 0" id="Logbook"></div>
+            <div id="ok" onclick="nav_goto_home()" style="position: absolute; background-color: aquamarine; width: 100px; height: 100px; top:826; left: 230px; opacity: 0" id="Home"></div>
+
+
+            <!--End of Navigation Button Snippet -->
+        </div>
+
+    </div>
+
+    <iframe src="signin.html" frameborder="none" style="height: 926px; width: 428px; position: absolute; top: 0; left: 0; z-index: -1;"></iframe>
+
+    <script>
+        function adjustZoom() {
+          const bodyWidth = document.body.offsetWidth;
+          const elementWidth = document.querySelector('.grand-parent').offsetWidth;
+    
+          // Calculate the desired zoom level
+          const zoomLevel = (bodyWidth / elementWidth) * 100;
+    
+          // Set the zoom level on the body
+          document.body.style.zoom = zoomLevel + '%';
+        }
+    
+        adjustZoom()
+
+        var restrictElement = document.getElementById('app');
+
+        function handleScroll(event) {
+        var scrollTop = window.scrollY;
+
+        // Check if the user is trying to scroll past the restricted element
+        if (scrollTop > restrictElement.offsetTop) {
+            // Prevent default scroll behavior
+            event.preventDefault();
+        }
+        }
+
+        // Attach the scroll event listener to the window
+        window.addEventListener('scroll', handleScroll);
+
+        document.addEventListener('contextmenu', function (e) {
+        // Check if the right-clicked element is not an input field
+        if (e.target.tagName.toLowerCase() !== 'input' && e.target.tagName.toLowerCase() !== 'textarea') {
+            e.preventDefault(); // Disable the right-click context menu
+        }
+        });
+
+        var textboxes = document.querySelectorAll('input');
+
+        function scrollToTop() {
+            window.scrollTo({ top: 0 });
+        }
+
+        var textInputs = document.querySelectorAll('input');
+        textInputs.forEach(function (textInput) {
+            textInput.addEventListener('blur', scrollToTop);
+        });
+        
+        function fadeAway() {
+            // Prevent the default behavior of the anchor tag (preventing redirection)
+            event.preventDefault();
+
+            // Add a class to initiate the fade-out effect
+            document.querySelector('.grand-parent').classList.add('fade-out');
+
+            // Optional: You can add a timeout to redirect after the animation completes
+            setTimeout(function () {
+                window.location.href = "signin.html";
+            }, 1500);
+        }
+
+        function ok() {
+        window.scrollTo({top: 0,});
+        }
+
+        setInterval(ok, 50)
+
+      </script>
+</body>
+</html>
